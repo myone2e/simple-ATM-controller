@@ -1,4 +1,5 @@
 # simple-ATM-controller
-Implementing a simple ATM controller
 
-You can clone the codes https://github.com/myone2e/simple-ATM-controller.git
+You can clone the codes by copy and pasting https://github.com/myone2e/simple-ATM-controller.git into your terminal
+
+
