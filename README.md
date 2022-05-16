@@ -63,7 +63,7 @@ In array actions, invalid selection Save was added to test implement_selection m
 For selection See Balance, it simply returns remaining balance for each account_id.
 For selection Deposit, it increases balance for each acccount_id & cash_bin as money inflow will occur.
 However, if negative deposit is given as an input, it will not proceed and return error message.
-For selection Withdraw, as there are two process to check if withdrawl can proceed.
+For selection Withdraw, as there are two process to check if withdrawal is possible.
 If condition is not satisfied, it will return error message for according process.
 If conditions are all satisfied, it will decreases balance for each acccount_id & cash_bin as money outflow will occur.
 
