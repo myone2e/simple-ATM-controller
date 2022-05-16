@@ -1,5 +1,5 @@
 class Bank:
-    def __init__(self, name='Customer'):
+    def __init__(self, name='UnknownBank'):
         self.data = dict()
         self.name = name
         
@@ -45,7 +45,7 @@ class ATMController:
             message = 'Invalid PIN number!'
             return self.validity, message
         else:
-            message = f'Welcome {self.bank.name}! Please select your account!'
+            message = f'Welcome to {self.bank.name}! Please select your account!'
             self.validity = 1
             return self.validity, message
 
@@ -73,7 +73,8 @@ class ATMController:
                     message = f'We got your Money! Your Balance is now {self.myAccounts[account_id]}'
                     return None, message
                 else:
-                    return None, None
+                    message = 'Negative Deposit is not possible!'
+                    return None, message
 
             elif selection == 'Withdraw':
                 if flow > 0 and self.myAccounts[account_id] >= flow:
