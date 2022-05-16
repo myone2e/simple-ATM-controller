@@ -4,8 +4,8 @@ if __name__ == '__main__':
     # Invalid Access
     bank_s = Bank()
     atm_s = ATMController(bank_s, 0)
-    flag, message = atm_s.insert_card('1234567890987654', '1234')
-    if flag == False:
+    validity, message = atm_s.insert_card('1234567890987654', '1234')
+    if validity != 1:
         print('Fail!', message)
     else:
         print('Success!', message)
@@ -15,7 +15,7 @@ if __name__ == '__main__':
     bank_1.create_card('1234567890987654', '1234', bank_1.name +'110000', balance=10000)
     atm_1 = ATMController(bank_1, 10000)
     validity, message = atm_1.insert_card('1234567890987654', '1234')
-    if validity == 0:
+    if validity != 1:
         print('Fail!', message)
     else:
         print('Success!', message)
@@ -36,10 +36,10 @@ if __name__ == '__main__':
     bank_1.open_account('9876543212345678', bank_1.name+'220002', balance=20)
     
     
-    actions = [('Balance', 0), ("Withdraw", 5000), ('Deposit', 100000), ('Withdraw', 50000), ('Withdraw', 100000000), ('Save',1234)]
+    actions = [('See Balance', 0), ("Withdraw", 5000), ('Deposit', 100000), ('Withdraw', 50000), ('Withdraw', 100000000), ('Save',1234)]
     card_pin = [('1234567890987654', '1234') , ('1234567890987654', '4321'), ('9876543212345678', '4321')]
     
-    # for 2 cards
+    # Test actions for 2 cards
     print('Luke110000 will start with balance 10000')
     for pair in card_pin:
         num, pin = pair
@@ -52,14 +52,15 @@ if __name__ == '__main__':
         else:
             print('Success!', message)
             
-        for acc in bank_1.data[num]['accounts']:
-            print(f'***Test for account_id {acc}***')
-            for action in actions:
-                cmd, amt = action
-                _, message = atm_1.implement_selection(num, acc, cmd, amt)
-                print(message)
+        for acc in list(bank_1.data[num]['accounts']):
+            if atm_1.select_account(acc) == True:
+                print(f'***Test for account_id {acc}***')
+                for action in actions:
+                    cmd, amt = action
+                    _, message = atm_1.implement_selection(num, acc, cmd, amt)
+                    print(message)
+            else:
+                continue
+                    
         print('Test Successful!')
         print()
-
-            
-    

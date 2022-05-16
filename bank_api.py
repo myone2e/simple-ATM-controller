@@ -62,7 +62,7 @@ class ATMController:
     
     def implement_selection(self, card_id, account_id, selection, flow = 0):
         if self.validity == 1:
-            if selection == 'Balance':
+            if selection == 'See Balance':
                 message = f'Your Balance is {self.myAccounts[account_id]}'
                 return None, message
 
@@ -94,4 +94,3 @@ class ATMController:
         else:
             message = 'You have to enter valid PIN'
             return None, message
-        
